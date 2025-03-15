@@ -3,16 +3,13 @@ from typing import Optional
 from beanie import Document
 
 
-class BaseShortenURL(Document):
+class ShortenURLRequest(Document):
     long_url: str
-    created_at: int
-    modified_at: Optional[int]
 
 
-class ShortenURLRequest(BaseShortenURL):
-    pass
-
-
-class ShortenURLResponse(BaseShortenURL):
+class ShortenURLResponse(Document):
     short_url: str
     algo: str
+    long_url: str
+    created_at: float
+    response_time: float

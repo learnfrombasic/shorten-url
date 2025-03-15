@@ -1,6 +1,6 @@
-from app.common import setup_logger
+from app.common import setup_logger, get_time_now
 from app.models.shorten_url import ShortenURLRequest, ShortenURLResponse
-from app.modules.hash_collision import URLShortener
+from app.modules.hasing_module import URLShortener
 
 logger = setup_logger(name="ShortenURL")
 
@@ -21,12 +21,14 @@ class ShortenURLService:
         Creates a shortened URL from a given long URL.
         """
         try:
-            short_url = self.algo.shorten(req.long_url)  # Generate short URL
+            short_url = self.algo.shorten(req.long_url).get("short_url")
 
             response_data = {
-                **req.model_dump(),
+                "long_url": req.long_url,
                 "short_url": short_url,
                 "algo": self.algo.mode,
+                "created_at": get_time_now(),
+                "response_time": short_url.get("response_time"),
             }
             response = ShortenURLResponse(**response_data)
 

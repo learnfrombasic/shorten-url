@@ -1,9 +1,0 @@
-class ShortenURLService:
-    def __init__(self): ...
-
-    def redirect_short_url(self, *, id: str): ...
-
-    def create_short_url(self, req: object): ...
-
-
-shorten_url_serivce = ShortenURLService()

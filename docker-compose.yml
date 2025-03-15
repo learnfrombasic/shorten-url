@@ -3,7 +3,6 @@ services:
     image: minh.leduc.0210/shorten-url:latest
     stdin_open: true
     tty: true
-    restart: always
     ports:
       - 7717:7771
 
@@ -11,12 +10,9 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27027:27017
+      - 27017:27017
     volumes:
       - mongodb_data_volume:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: minhleduc
-      MONGO_INITDB_ROOT_PASSWORD: 7777
       
 volumes:
   mongodb_data_volume:

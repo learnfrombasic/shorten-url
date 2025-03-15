@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import RedirectResponse
 
-from src.services.shorten_url_service import shorten_url_serivce
+from app.services.shorten_url_service import shorten_url_serivce
 
 router = APIRouter()
 

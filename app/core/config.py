@@ -12,5 +12,8 @@ class Settings(BaseSettings):
 
     ENVIRONMENT: str
 
+    MONGODB_URL: str
+    
+    HASH_SALT: str
 
 settings = Settings()

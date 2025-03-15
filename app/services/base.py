@@ -15,7 +15,7 @@ class BaseShorten(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def redirect_short_url(self, *, id:str) -> str: 
+    def get_long_url(self, *, id:str) -> str: 
         """
         Find the shorten URL in the database and return the relevant long URL. 
         The service then redirect to the long URL. 

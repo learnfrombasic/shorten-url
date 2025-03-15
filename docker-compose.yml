@@ -1,8 +1,12 @@
 services:
   shorten-url:
-    image: minh.leduc.0210/shorten-url:latest
     stdin_open: true
     tty: true
+    container_name: shorten-url
+    image: minhleduc0210/shorten-url:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 7717:7771
 

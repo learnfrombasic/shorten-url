@@ -1,0 +1,14 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.8.4   
+  hooks:
+    - id: ruff
+      name: ruff
+      description: "Run 'ruff' for extremely fast Python linting"
+      entry: ruff check --fix
+      language: python
+      types_or: [python, pyi, jupyter]
+      args: []
+      require_serial: true
+      additional_dependencies: []
+      minimum_pre_commit_version: "2.9.2"

@@ -5,11 +5,11 @@ from typing import List, Type
 from beanie import Document, init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 
-
-from app.core.config import settings
 from app.common import setup_logger
+from app.core.config import settings
 
-logger = setup_logger('Core::DB')
+logger = setup_logger("Core::DB")
+
 
 def init_document_models() -> List[Type[Document]]:
     """Automatically loads all Document models from the 'models' directory."""
@@ -42,13 +42,11 @@ def init_document_models() -> List[Type[Document]]:
 
 
 async def init_mongodb():
-  try:
-    client = AsyncIOMotorClient(
-      settings.MONGO_DB_URI
-    )
-    db = client[settings.MONGO_DB_NAME]
-    await init_beanie(database=db, document_models=init_document_models())
-    logger.info("MongoDB Database initialized")
-  except Exception as e:
-    logger.error(f"Error initializing MongoDB Database: {e}")
-    raise e
+    try:
+        client = AsyncIOMotorClient(settings.MONGO_DB_URI)
+        db = client[settings.MONGO_DB_NAME]
+        await init_beanie(database=db, document_models=init_document_models())
+        logger.info("MongoDB Database initialized")
+    except Exception as e:
+        logger.error(f"Error initializing MongoDB Database: {e}")
+        raise e

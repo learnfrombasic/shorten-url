@@ -1,9 +1,9 @@
 import hashlib
+
 from poc.base import BaseShorten
 
 
 class URLShortener(BaseShorten):
-
     def __init__(self, mode="HashCollision"):
         super().__init__(mode=mode)
         self.salt = "minhleduc_0210"  # Predefined string for handling collisions
@@ -18,7 +18,7 @@ class URLShortener(BaseShorten):
 
             # Generate a hash
             hash_obj = hashlib.sha256(url_to_hash.encode())
-            short_url = hash_obj.hexdigest()[:self.idx_len]
+            short_url = hash_obj.hexdigest()[: self.idx_len]
 
             # Check for collision
             if short_url not in self.url_map:

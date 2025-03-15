@@ -1,9 +1,12 @@
 from poc.base import BaseShorten
 
-CHARSET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # Base-24 characters (excluding 0, O, 1, I)
+CHARSET = (
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # Base-24 characters (excluding 0, O, 1, I)
+)
+
 
 class Base24URLShortener(BaseShorten):
-    def __init__(self, mode='Base24Conversion'):
+    def __init__(self, mode="Base24Conversion"):
         super().__init__(mode=mode)
 
         self.charset = CHARSET

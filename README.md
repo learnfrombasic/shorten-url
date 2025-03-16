@@ -67,10 +67,10 @@ graph TD;
 ## **📡 API Endpoints**  
 
 | **Method** | **Endpoint**           | **Description**                                                                                                                    |
-|-----------|----------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **POST**  | `/api/v1/shorten-data` | Generates a short URL from a given long URL. The client sends a **POST** request with the original URL.                            |
-| **GET**   | `/{shorten_url}`       | Redirects users to the original long URL when they access a shortened link. The client sends a **GET** request with the short URL. |
-| **GET**   | `/api/v1/info`         | Sends periodic service info for health-checking.                                                                              |
+| ---------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **POST**   | `/api/v1/shorten-data` | Generates a short URL from a given long URL. The client sends a **POST** request with the original URL.                            |
+| **GET**    | `/{shorten_url}`       | Redirects users to the original long URL when they access a shortened link. The client sends a **GET** request with the short URL. |
+| **GET**    | `/api/v1/info`         | Sends periodic service info for health-checking.                                                                                   |
 
 ## **⚡ Getting Started**  
 

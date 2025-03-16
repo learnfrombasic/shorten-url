@@ -59,7 +59,11 @@ async def redirect_short_url(short_url: str):
         )
 
 
-@router.get(path="/api/v1/info", description="", status_code=status.HTTP_200_OK)
+@router.get(
+    path="/api/v1/info",
+    description="Health check endpoint to monitor the status of the URL shortening service.",
+    status_code=status.HTTP_200_OK,
+)
 def healthcheck():
     try:
         resp = shorten_url_service.get_healthcheck()

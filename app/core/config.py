@@ -13,9 +13,10 @@ class Settings(BaseSettings):
     ENVIRONMENT: str
 
     MONGO_DB_NAME: str
-    MONGO_DB_URL: str
+    MONGO_DB_URI: str
 
     HASH_SALT: str
-
+    HASH_ALGO: str
+    IDX_LEN: int
 
 settings = Settings()

@@ -1,14 +1,14 @@
-### **Shorten-URL: A Simple & Efficient URL Shortener** 🚀  
+# **🚀 Shorten-URL: A Simple & Efficient URL Shortener**  
 
 ## **🔗 Introduction**  
-Ever needed to share a long, clunky URL but wished it was **shorter and cleaner**? That’s exactly what **Shorten-URL** does! This service **shrinks long links** into compact, easy-to-share URLs while also enabling **tracking and customization**.  
+Tired of long, messy URLs? **Shorten-URL** makes your links **shorter, cleaner, and easier to share** while also offering **tracking and customization**.  
 
-While shortened links are great for **social media, messaging, and marketing**, they can also be misused to mask malicious sites. To prevent abuse, some platforms **block unknown short URLs**, but when used responsibly, they remain a **powerful tool for businesses and individuals alike**.  
+Perfect for **social media, messaging, and marketing**, this service helps improve link engagement. While some platforms block unknown short URLs to prevent abuse, **responsible use makes URL shorteners a powerful tool for businesses and individuals alike**.  
 
 ---
 
 ## **📂 Project Structure**  
-Here’s how the project is organized:  
+The project is organized as follows:  
 
 ```
 .
@@ -27,13 +27,22 @@ Here’s how the project is organized:
 
 ---
 
+## **📡 API Endpoints**  
+
+| **Method** | **Endpoint**           | **Description** |
+|-----------|----------------------|----------------------------------------------------------------|
+| **POST**  | `/api/v1/shorten-data` | Generates a short URL from a given long URL. The client sends a **POST** request with the original URL. |
+| **GET**   | `/{shorten_url}`       | Redirects users to the original long URL when they access a shortened link. The client sends a **GET** request with the short URL. |
+
+---
+
 ## **⚡ Usage**  
-🔨 **STATUS: In-progress** – Stay tuned for updates!  
+🔨 **STATUS: In Progress** – Stay tuned for updates!  
 
 ---
 
 ## **👨‍💻 Maintainer**  
 This project is maintained by:  
-- [Le Duc Minh](https://github.com/MinLee0210)  
+- **[Le Duc Minh](https://github.com/MinLee0210)**  
 
 Feel free to contribute or reach out with ideas! 🚀  

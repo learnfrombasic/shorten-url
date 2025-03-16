@@ -45,13 +45,6 @@ COPY --from=build /usr/local/lib/python3.10 /usr/local/lib/python3.10
 COPY --from=build /usr/local/bin /usr/local/bin
 
 # Copy application source code
-COPY src /app/src
-COPY entrypoint.sh /app/entrypoint.sh
-COPY main.py /app/main.py
+COPY app /app/app
 
-# Ensure entrypoint script is executable
-RUN chmod +x /app/entrypoint.sh
-
-# Set entrypoint and default command
-ENTRYPOINT ["bash"]
-CMD [ "entrypoint.sh" ]
+EXPOSE 1802

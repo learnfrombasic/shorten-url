@@ -25,8 +25,8 @@ ENVIRONMENT=${ENVIRONMENT:-dev}
 # Run FastAPI based on the environment mode
 if [[ "$ENVIRONMENT" == "dev" ]]; then
     echo "🚀 Running FastAPI in development mode..."
-    fastapi dev --host "$HOST" --port "$PORT"
+    fastapi dev app --host "$HOST" --port "$PORT"
 else
     echo "🚀 Running FastAPI in production mode..."
-    fastapi run --host "$HOST" --port "$PORT"
+    fastapi run app --host "$HOST" --port "$PORT"
 fi

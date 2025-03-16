@@ -3,14 +3,15 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.api import api_router
 from app.core.setup_lifespan import lifespan
+from app.core.config import settings
 
 app = FastAPI(
-    title="Oryza AI FastAPI Face Recogition's Service",
+    title=settings.APP,
     docs_url="/",
     lifespan=lifespan,
 )
 
-app.include_router(api_router, prefix="/api/v1")
+app.include_router(api_router)
 
 app.add_middleware(
     CORSMiddleware,

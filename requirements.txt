@@ -1,0 +1,6 @@
+beanie==1.29.0
+colorlog==6.9.0
+fastapi==0.115.11
+motor==3.7.0
+pydantic_settings==2.8.1
+starlette==0.46.1

@@ -1,23 +1,20 @@
 services:
-  shorten-url:
-    stdin_open: true
-    tty: true
-    container_name: shorten-url
+  shorten_url:
     image: minhleduc0210/shorten-url:latest
+    tty: true
+    stdin_open: true
+    container_name: shorten-url
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - .env
+    command: fastapi run app --host 0.0.0.0 --port 1802
     ports:
-      - 7717:7771
-
-  mongodb:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb_data_volume:/data/db
-      
-volumes:
-  mongodb_data_volume:
-    external: true
+      - 1802:1802
+    healthcheck:
+      test: curl -f http://shorten_url:1802/api/v1/info || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
+  

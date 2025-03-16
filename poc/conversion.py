@@ -1,14 +1,10 @@
-from poc.base import BaseShorten
-
 CHARSET = (
     "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # Base-24 characters (excluding 0, O, 1, I)
 )
 
 
-class Base24URLShortener(BaseShorten):
-    def __init__(self, mode="Base24Conversion"):
-        super().__init__(mode=mode)
-
+class Base24URLShortener:
+    def __init__(self):
         self.charset = CHARSET
         self.base = len(self.charset)
         self.counter = 1  # Simulated auto-incrementing ID (would be a DB ID in real-world applications)
@@ -33,7 +29,7 @@ class Base24URLShortener(BaseShorten):
             num = num * self.base + self.charset.index(char)
         return num
 
-    def shorten(self, long_url):
+    def generate_short_url(self, long_url):
         """Generates a short URL using Base-24 encoding."""
         short_url = self.encode(self.counter)
         self.url_map[short_url] = long_url
@@ -43,3 +39,15 @@ class Base24URLShortener(BaseShorten):
     def get_long_url(self, short_url):
         """Retrieves the original long URL from the short URL."""
         return self.url_map.get(short_url, "URL not found")
+
+
+if __name__ == "__main__":
+    # Example Usage
+    shortener = Base24URLShortener()
+    long_url = "https://docs.python.org/3/library/hashlib.html"
+
+    short_url = shortener.generate_short_url(long_url)
+    print(f"Short URL: {short_url}")  # Example output: "B2F"
+
+    retrieved_url = shortener.get_long_url(short_url)
+    print(f"Original URL: {retrieved_url}")

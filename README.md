@@ -22,7 +22,6 @@ The project is organized as follows:
 ├── assets          # Static assets (if any)
 ├── compose         # Docker-related configurations
 ├── poc             # Proof of Concept - Example implementations
-└── test            # Unit and integration tests
 ```
 
 ## **📡 API Endpoints**  

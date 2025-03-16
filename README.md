@@ -1,14 +1,12 @@
-
 # **🚀 Shorten-URL: A Simple & Efficient URL Shortener**  
 
 ## **🔗 Introduction**  
-Tired of long, messy URLs? **Shorten-URL** makes your links **shorter, cleaner, and easier to share**, while also providing **tracking and customization**.  
+Ever struggled with **long, ugly URLs**? **Shorten-URL** helps you convert them into **short, shareable, and trackable links** in just seconds!  
 
-Perfect for **social media, messaging, and marketing**, this service enhances link engagement. While some platforms block unknown short URLs to prevent abuse, **responsible use makes URL shorteners a powerful tool for businesses and individuals alike**.  
-
+Whether you're **sharing links on social media, marketing campaigns, or messaging apps**, this tool enhances link **engagement, accessibility, and customization**. While some platforms block unknown short URLs to prevent abuse, **responsible use makes URL shorteners a powerful tool for businesses and individuals alike**.  
 
 ## **📂 Project Structure**  
-The project is organized as follows:  
+This project is structured as follows:  
 
 ```bash
 .
@@ -21,8 +19,50 @@ The project is organized as follows:
 │   └── services    # Service layer
 ├── assets          # Static assets (if any)
 ├── compose         # Docker-related configurations
-├── poc             # Proof of Concept - Example implementations
+└── poc             # Proof of Concept - Example implementations
 ```
+
+
+
+## **🛠️ System Architecture**  
+
+### **🔹 System Overview**  
+
+```mermaid
+graph TD;
+    
+    subgraph User
+        A[User Request] -->|Long URL| B[Frontend/UI]
+    end
+    
+    subgraph Backend
+        C[FastAPI Server] --> |API Call| D[Shorten URL Function]
+        D --> |Store Data| E[MongoDB]
+        C --> |Retrieve Data| E
+        C --> |Redirect to Long URL| F[Redirect Handler]
+    end
+
+    subgraph Database
+        E[(MongoDB)]
+    end
+
+    subgraph External Service
+        F[Redirect to Original URL]
+    end
+
+    B -->|Send API Request| C
+    C -->|Return Short URL| B
+    B -->|Access Short URL| F
+    F -->|Redirect to Long URL| G[User Accesses Original Site]
+```
+
+- **User** submits a **long URL** through the frontend.  
+- **FastAPI backend**:
+  - Generates a **shortened URL**.
+  - Stores mapping in **MongoDB**.
+  - Redirects users to the original URL upon request.  
+- **MongoDB** acts as the database to store the URL mappings.  
+
 
 ## **📡 API Endpoints**  
 
@@ -30,13 +70,11 @@ The project is organized as follows:
 |-----------|----------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | **POST**  | `/api/v1/shorten-data` | Generates a short URL from a given long URL. The client sends a **POST** request with the original URL.                            |
 | **GET**   | `/{shorten_url}`       | Redirects users to the original long URL when they access a shortened link. The client sends a **GET** request with the short URL. |
-| **GET**   | `/api/v1/info`         | Sends service info periodically for health-checking.                                                                              |
+| **GET**   | `/api/v1/info`         | Sends periodic service info for health-checking.                                                                              |
 
-
-## **⚡ Usage**  
+## **⚡ Getting Started**  
 
 You can run the **Shorten-URL** service using either **Python's virtual environment** or **Docker Compose**.
-
 
 ### **🐍 1️⃣ Running with Python's Virtual Environment**  
 
@@ -70,7 +108,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 1802 --reload
 🔹 Once the service is running, access it at:  
 👉 **http://localhost:1802**  
 
-📌 **Note:** I highly recommend using `uv` for initializing Python's virtual environment.
+📌 **Note:** Using `uv` is recommended for initializing Python's virtual environment.
 
 
 ### **🐳 2️⃣ Running with `docker-compose`**  
@@ -100,9 +138,9 @@ To stop the service, run:
 ```bash
 docker-compose -f docker-compose.yml down
 ```
-
 ## **👨‍💻 Contributor**  
 This project is developed and maintained by:  
 - **[Le Duc Minh](https://github.com/MinLee0210)**  
 
 💡 **Have ideas or improvements?** Feel free to contribute or reach out! 🚀  
+

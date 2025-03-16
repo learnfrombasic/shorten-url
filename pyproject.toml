@@ -1,0 +1,14 @@
+[project]
+name = "shorten-url"
+version = "0.1.0"
+description = "Building a shorten URL service."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "beanie==1.29.0",
+    "colorlog==6.9.0",
+    "fastapi==0.115.11",
+    "motor==3.7.0",
+    "pydantic-settings==2.8.1",
+    "starlette==0.46.1",
+]

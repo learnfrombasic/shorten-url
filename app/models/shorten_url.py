@@ -1,4 +1,3 @@
-
 from beanie import Document
 
 

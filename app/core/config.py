@@ -19,4 +19,5 @@ class Settings(BaseSettings):
     HASH_ALGO: str
     IDX_LEN: int
 
+
 settings = Settings()

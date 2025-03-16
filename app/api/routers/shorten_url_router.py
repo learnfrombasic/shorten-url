@@ -23,10 +23,15 @@ async def create_short_url(long_url: str):
     try:
         resp = await shorten_url_service.create_short_url(long_url=long_url)
         if not resp:
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to generate short URL")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Failed to generate short URL",
+            )
         return resp
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}"
+        )
 
 
 @router.get(
@@ -43,22 +48,23 @@ async def redirect_short_url(short_url: str):
     try:
         resp = await shorten_url_service.get_long_url(short_url=short_url)
         if not resp:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Short URL not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Short URL not found"
+            )
 
-        return RedirectResponse(url=resp.long_url, 
-                                status_code=status.HTTP_302_FOUND)
+        return RedirectResponse(url=resp.long_url, status_code=status.HTTP_302_FOUND)
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}"
+        )
 
 
-@router.get(
-    path="/api/v1/info", 
-    description="", 
-    status_code=status.HTTP_200_OK
-)
+@router.get(path="/api/v1/info", description="", status_code=status.HTTP_200_OK)
 def healthcheck():
     try:
         resp = shorten_url_service.get_healthcheck()
         return resp
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {str(e)}"
+        )

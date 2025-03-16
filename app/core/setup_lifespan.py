@@ -13,7 +13,7 @@ logger = setup_logger("Core")
 async def lifespan(app: FastAPI):
     logger.info(f"Welcome to {settings.APP}")
     await init_mongodb()
-    
+
     yield
 
     logger.info("Shutting down the server")

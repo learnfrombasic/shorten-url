@@ -16,8 +16,7 @@ class ShortenURLService:
         Initializes the ShortenURLService with a URL shortening algorithm.
         """
         self.algo = URLShortener(
-            mode=settings.HASH_ALGO.lower(), 
-            idx_len=settings.IDX_LEN
+            mode=settings.HASH_ALGO.lower(), idx_len=settings.IDX_LEN
         )
         self.salt = settings.HASH_SALT
 
@@ -29,12 +28,14 @@ class ShortenURLService:
             attempt = 0
 
             # Loop until a unique short URL is found
-            while True:  
+            while True:
                 payload = long_url + (self.salt * attempt if attempt > 0 else "")
                 hash_resp = self.algo.shorten(payload)
 
                 # Check if short URL already exists
-                existing_url = await ShortenURL.find_one({"short_url": hash_resp.get("short_url")})
+                existing_url = await ShortenURL.find_one(
+                    {"short_url": hash_resp.get("short_url")}
+                )
 
                 if not existing_url:
                     break  # Unique short URL found
@@ -52,7 +53,9 @@ class ShortenURLService:
 
             # Insert the new shortened URL into the database
             await response.insert()
-            logger.info(f"Successfully inserted Short URL {response.short_url} into the database.")
+            logger.info(
+                f"Successfully inserted Short URL {response.short_url} into the database."
+            )
 
             return response
 
@@ -73,15 +76,15 @@ class ShortenURLService:
             return response
 
         except Exception as e:
-            logger.error(f"Error retrieving long URL for Short URL '{short_url}': {e}", exc_info=True)
+            logger.error(
+                f"Error retrieving long URL for Short URL '{short_url}': {e}",
+                exc_info=True,
+            )
             raise RuntimeError("Failed to retrieve the long URL") from e
 
-    def get_healthcheck(self) -> dict: 
-        return {
-            'ip': settings.HOST, 
-            'port': settings.PORT, 
-            'status': 'alive'
-        }
+    def get_healthcheck(self) -> dict:
+        return {"ip": settings.HOST, "port": settings.PORT, "status": "alive"}
+
 
 # Instantiate the service
 shorten_url_service = ShortenURLService()
